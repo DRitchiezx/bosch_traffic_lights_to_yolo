@@ -68,6 +68,8 @@ for image_set in sets:
     list_file = open('../data/bosch_rgb/labels/%s.txt' % image_set, 'w')
     counter = 0
     for i in range(len(examples)):
+        if len(examples[i]['boxes']) == 0:
+            continue
         examples[i]['path'] = os.path.abspath(os.path.join(os.path.dirname(INPUT_YAML), examples[i]['path']))
         list_file.write('%s\n' % examples[i]['path'])
         convert_annotation(path_label,  examples[i])
